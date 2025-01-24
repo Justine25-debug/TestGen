@@ -1,7 +1,5 @@
 import { SVGAttributes } from "react";
 
-// All icons provided by SVG Repo (svgrepo.com)
-
 export function GithubIcon(props: SVGAttributes<SVGElement>) {
   return (
     <svg
