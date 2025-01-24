@@ -10,7 +10,6 @@ const credentials = JSON.parse(
   Buffer.from(process.env.GOOGLE_SERVICE_KEY || "", "base64").toString()
 );
 
-// // Initialize Vertex with your Cloud project and location
 const vertex_ai = new VertexAI({
   project: "teak-flash-361520",
   location: "europe-west3",
@@ -20,7 +19,6 @@ const vertex_ai = new VertexAI({
 });
 const model = "gemini-1.5-pro-preview-0409";
 
-// Instantiate the models
 const generativeModel = vertex_ai.preview.getGenerativeModel({
   model: model,
   generationConfig: {
@@ -58,7 +56,6 @@ function iteratorToStream(iterator: any) {
       } else {
         const data = value.candidates[0].content.parts[0].text;
 
-        // controller.enqueue(`data: ${data}\n\n`);
         controller.enqueue(data);
       }
     },
@@ -106,7 +103,6 @@ export async function POST(req: Request) {
     files.map(async (file) => {
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
-      // return "data:" + file.type + ";base64," + buffer.toString("base64");
       return buffer.toString("base64");
     })
   );
@@ -127,7 +123,6 @@ export async function POST(req: Request) {
 
   const resp = await generativeModel.generateContentStream(body);
 
-  // Convert the response into a friendly text-stream
   const stream = iteratorToStream(resp.stream);
 
   return new StreamingTextResponse(stream, {
