@@ -1,8 +1,10 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import TabComponent from "@/components/shared/TabComponent";
 import FileNote from "@/components/pages/FileNote";
-import TextNote from "@/components/pages/TextNote";
 import FormField from "@/components/pages/FormField";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/app/firebase/config";
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
 
 export default function Form({
   onSubmit,
@@ -14,9 +16,22 @@ export default function Form({
   onSetTimer: (index: number) => void;
 }) {
   const [step, setStep] = useState(0);
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+
+  if (!user) {
+    router.push("/sign-up");
+  }
+
 
   return (
     <FormField>
+        <button
+          onClick={() => signOut(auth)}
+          className="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 bg-red-500 text-white rounded-md"
+        >
+          Sign Out
+        </button>
       <form onSubmit={onSubmit}>
         <header className="text-center mb-10">
           <h2 className="text-lg font-semibold mb-1">Upload a file</h2>

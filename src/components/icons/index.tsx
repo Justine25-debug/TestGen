@@ -1,3 +1,4 @@
+'use client'
 import { SVGAttributes } from "react";
 
 export function GithubIcon(props: SVGAttributes<SVGElement>) {
