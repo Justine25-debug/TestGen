@@ -6,19 +6,18 @@ import {
 import { StreamingTextResponse } from "ai";
 import { NextResponse } from "next/server";
 
-
 const credentials = JSON.parse(
   Buffer.from(process.env.GOOGLE_SERVICE_KEY || "", "base64").toString()
 );
 
 const vertex_ai = new VertexAI({
-  project: "teak-flash-361520",
-  location: "europe-west3",
+  project: "deep-tracer-449006-b6",
+  location: "us-central1",
   googleAuthOptions: {
     credentials,
   },
 });
-const model = "gemini-1.5-pro-preview-0409";
+const model = "gemini-1.5-pro-002";
 
 const generativeModel = vertex_ai.preview.getGenerativeModel({
   model: model,

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "question": "What is the primary goal of Enterprise Resource Planning (ERP)?",
+    "description": null,
+    "options": {
+      "a": "To manage internal and external resources",
+      "b": "To integrate departments and functions across an organization into a single infrastructure",
+      "c": "To improve operational efficiency",
+      "d": "To link a business with its external partners"
+    },
+    "answer": "b"
+  },
+  {
+    "id": 2,
+    "question": "Which of the following is NOT a core component of an ERP system?",
+    "description": null,
+    "options": {
+      "a": "Hardware",
+      "b": "Software",
+      "c": "Marketing Automation",
+      "d": "People"
+    },
+    "answer": "c"
+  }
+]
