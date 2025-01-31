@@ -74,14 +74,13 @@ export default function FormContainer() {
         <FormField>
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-center ">
             <p className="max-w-sm text-center text-sm text-zinc-500 mb-4">
-              Questions successfully generated! Click the button to begin whenever
-              you&apos;re ready!
+              Questions successfully generated! Click the button to view it!
             </p>
             <button
               onClick={() => setStatus("start")}
               className="font-geistmono font-semibold tracking-widest bg-primary hover:bg-secondary duration-200 text-white rounded-full px-6 py-3"
             >
-              Start Quiz
+              View Quiz
             </button>
           </div>
         </FormField>

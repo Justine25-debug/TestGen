@@ -8,6 +8,7 @@ export interface FormType {
 }
 
 export interface QuizType {
+  topic: QuizType;
   id: string;
   question: string;
   description: string;

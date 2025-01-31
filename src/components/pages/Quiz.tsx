@@ -6,10 +6,12 @@ export default function Quiz({
   alpha,
   text,
   quiz,
+  showAnswers,
 }: {
   alpha: string;
   text: string;
   quiz: QuizType;
+  showAnswers: boolean;
 }) {
   const setSelectedAnswer = useQuizStore((state) => state.setSelectedAnswer);
   const selectedAnswer = useQuizStore((state) => state.selectedAnswer);
@@ -19,18 +21,16 @@ export default function Quiz({
   }, [selectedAnswer]);
 
   const getColStr = (c1: string, c2: string, c3: string) =>
-    hasAnswered && quiz.answer === selectedAnswer && quiz.answer === alpha
+    showAnswers && quiz.answer === alpha
       ? c1
-      : hasAnswered &&
-        quiz.answer !== selectedAnswer &&
-        selectedAnswer === alpha
+      : hasAnswered && quiz.answer !== selectedAnswer && selectedAnswer === alpha
       ? c2
       : c3;
 
   return (
     <label
       htmlFor={alpha}
-      className={`flex items-center justify-between w-full gap-x-6 max-w-xl mx-auto rounded-full px-4 py-3 font-geistmono cursor-pointer min-h-16 duration-300 ${getColStr(
+      className={`flex items-center justify-between w-full gap-x-6 max-w-xl mx-auto rounded-full px-4 py-3 font-geistmono min-h-16 duration-300 ${getColStr(
         "bg-primary text-white",
         "bg-error text-white",
         "bg-zinc-100 text-zinc-700"
@@ -48,7 +48,6 @@ export default function Quiz({
       </div>{" "}
       <p className="select-none text-sm">{text}</p>
       <input
-        type="radio"
         value={alpha}
         id={alpha}
         onChange={(e) => {

@@ -1,10 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import FileNote from "@/components/pages/FileNote";
 import FormField from "@/components/pages/FormField";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/app/firebase/config";
-import { useRouter } from "next/navigation";
-import { signOut } from "firebase/auth";
 
 export default function Form({
   onSubmit,
@@ -16,22 +12,10 @@ export default function Form({
   onSetTimer: (index: number) => void;
 }) {
   const [step, setStep] = useState(0);
-  const [user] = useAuthState(auth);
-  const router = useRouter();
-
-  if (!user) {
-    router.push("/sign-up");
-  }
 
 
   return (
     <FormField>
-        <button
-          onClick={() => signOut(auth)}
-          className="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 bg-red-500 text-white rounded-md"
-        >
-          Sign Out
-        </button>
       <form onSubmit={onSubmit}>
         <header className="text-center mb-10">
           <h2 className="text-lg font-semibold mb-1">Upload a file</h2>
@@ -94,24 +78,7 @@ export default function Form({
             </div>
           </label>
 
-          <label htmlFor="timer">
-            <p className="text-sm mb-2 text-zinc-500">Completion Time (Higher the time, the better result)</p>
-            <div>
-              {[1, 5, 10, 15].map((time) => (
-                <label key={time} className="block text-sm font-medium text-zinc-700">
-                  <input
-                    type="radio"
-                    name="timer"
-                    value={time}
-                    checked={timer === time}
-                    onChange={(e) => onSetTimer(+e.target.value)}
-                    className="mr-2"
-                  />
-                  {time} min
-                </label>
-              ))}
-            </div>
-          </label>
+
         </fieldset>
 
         <button className="flex items-center justify-center w-full text-center max-w-lg mx-auto duration-200 text-sm gap-x-2 bg-primary hover:bg-secondary text-white font-medium px-4 py-3 rounded-full">
