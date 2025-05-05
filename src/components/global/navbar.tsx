@@ -9,6 +9,7 @@ import { doc, getDoc } from "firebase/firestore";
 import FormContainer from "@/components/pages/FormContainer";
 import Container from "@/components/shared/Container";
 import QBank from "@/components/pages/qbank";
+import TOS from "@/components/pages/tos";
 
 export default function Navbar() {
   const [activeComponent, setActiveComponent] = useState<React.ReactNode>(null);
@@ -55,6 +56,13 @@ export default function Navbar() {
       <nav className="fixed w-64 h-screen bg-gray-800 text-white flex flex-col p-4 justify-between">
         <div>
           <p className="mb-4">Welcome, {userName}</p>
+          {/* Create TOS button now comes first */}
+          <button
+            onClick={() => setActiveComponent(<TOS />)}
+            className="mb-4 p-2 bg-indigo-600 rounded hover:bg-indigo-500 w-full"
+          >
+            Create TOS
+          </button>
           <button
             onClick={() => setActiveComponent(
               <main className="relative">
@@ -62,13 +70,13 @@ export default function Navbar() {
                 <FormContainer />
               </main>
             )}
-            className="mb-4 p-2 bg-indigo-600 rounded hover:bg-indigo-500"
+            className="mb-4 p-2 bg-indigo-600 rounded hover:bg-indigo-500 w-full"
           >
             Create Test
           </button>
           <button
             onClick={() => setActiveComponent(<QBank />)}
-            className="mb-4 p-2 bg-indigo-600 rounded hover:bg-indigo-500"
+            className="mb-4 p-2 bg-indigo-600 rounded hover:bg-indigo-500 w-full"
           >
             Question Bank
           </button>
